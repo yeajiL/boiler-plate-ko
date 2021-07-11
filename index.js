@@ -4,15 +4,16 @@ const port = 5000
 
 const bodyParser = require('body-parser');
 const {User} = require("./models/User");
-
 //application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended:true}));
+
+const config = require('./config/key');
 
 //application/json
 app.use(bodyParser.json());
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://yeaji:1111@cluster0.8m5w1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+mongoose.connect(config.mongoURI,{
     useNewUrlParser: true, useUnifiedTopology:true,useCreateIndex:true,useFindAndModify:false
 
 }).then(() => console.log("MongoDB Connected...."))
@@ -20,7 +21,7 @@ mongoose.connect('mongodb+srv://yeaji:1111@cluster0.8m5w1.mongodb.net/myFirstDat
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World! hihihi')
+  res.send('예아~')
 })
 
 app.post('/register', (req,res) => {
